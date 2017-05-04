@@ -1,0 +1,23 @@
+{
+  "locations" : {
+    "library" : "rock",
+    "nymble" : "paper",
+    "dbuilding": "",
+    "ebuilding" : "scissors",
+    "architecture" : "paper",
+    "fbiulding" : "scissors",
+    "borggarden" : "rock"
+  },
+  "teams" : {
+    "rock" : ["testUser"],
+    "paper": [],
+    "scissors": []
+    },
+  "users" : {
+    "testUser" : {
+      "team" : "rock",
+      "haveBeen" : ["library"],
+      "totalDistance" : 123
+    }
+  }
+}
