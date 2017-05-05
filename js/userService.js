@@ -1,8 +1,8 @@
 
 mobiluApp.factory('userData',function ($resource) {
 
-  var team = "";
-  var haveBeen = [];
+  var team = '""';
+  var haveBeen = '[]';
   var totalDistance = 0;
 
   this.setTeam = function(inputTeam) {
@@ -23,6 +23,10 @@ mobiluApp.factory('userData',function ($resource) {
   }
 
   this.addPlace = function(place) {
+    if (haveBeen == '[]') {
+      haveBeen = [];
+      console.log("YAS QWEEN");
+    }
     if (haveBeen.indexOf(place) == -1) {
       haveBeen.push(place);
     }

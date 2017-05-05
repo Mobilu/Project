@@ -78,7 +78,7 @@ mobiluApp.factory('Firebase',function ($resource) {
   }
 
   // NEW ACCOUNT FUNCTION
-  this.newAccount = function(email, password) {
+  this.newAccount = function(email, password, data) {
     user = firebase.auth().createUserWithEmailAndPassword(email, password)
     .catch(function(error) {
     // Handle Errors here.
@@ -96,9 +96,9 @@ mobiluApp.factory('Firebase',function ($resource) {
     firebase.auth().onAuthStateChanged(function(user){
       if(user) {
         var userId = user.uid;
-        var JSONDATA = '{"team" : "","haveBeen" : [],"totalDistance" : 0}'; // TODO
+        var JSONDATA = '{"team" :'+ data[0] +',"haveBeen" : '+data[2]+',"totalDistance" : '+ data[1] +'}'; // TODO
+        console.log(JSONDATA);
         firebase.database().ref('users/' + userId).set(JSON.parse(JSONDATA));
-        window.location = "#/play";
       }
     });
   }
