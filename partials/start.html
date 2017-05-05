@@ -1,7 +1,32 @@
-<h1>Page where you choose team and login</h1>
-<p> {{text}} </p>
 
-<button ng-click="play()">Play</button>
+<ons-page>
+
+	<h1 style="text-align: center; opacity: 0.6; padding: 25px;">Mobilu</h1>
+
+	<p style="text-align: center; opacity: 0.6; padding: 10px;">How to play:</p>
+
+	<p style="text-align: left; opacity: 0.6; padding-bottom: 20px; padding-top: 20px; padding-right: 10px; padding-left: 10px;">You select a team and work with your team to 'occupy' KTH campus. You walk to a building and ...LOREM IPSUM ... Be careful you only get to choose a team once :)</p>
+
+	<p style="text-align: center; opacity: 0.6; padding: 10px;">Choose your team:</p>
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-xs-4">
+				<ons-button class="teamButton" ng-click="play('paper')"> <i class="fa fa-hand-paper-o fa-2x" aria-hidden="true"></i> </ons-button>
+			</div>
+			<div class="col-xs-4">
+				<ons-button class="teamButton" ng-click="play('rock')"> <i class="fa fa-hand-rock-o fa-2x" aria-hidden="true"></i> </ons-button>
+			</div>
+			<div class="col-xs-4">
+				<ons-button class="teamButton" ng-click="play('scissors')"> <i class="fa fa-hand-scissors-o fa-2x" aria-hidden="true"></i> </ons-button>
+			</div>
+		</div>
+	</div>
+</ons-page>
+
+
+
 
 
                         

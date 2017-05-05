@@ -1,10 +1,8 @@
 
-mobiluApp.controller('StartCtrl',function($scope){
-	
-	$scope.text = "LOGIN SOMEWHERE";
+mobiluApp.controller('StartCtrl',function($scope,userData){
 
-	$scope.play = function() {
-		//$location.path("/play");
+	$scope.play = function(team) {
+		userData.setTeam(team);
 		window.location.hash = "#!/play";
 	}
 
