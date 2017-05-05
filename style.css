@@ -9,8 +9,9 @@
 	padding: 3%;
 	margin: auto;
 	margin-top: 35px;
-	min-height: 50%;
+	height: 50%;
 	font-family: 'Baloo';
+	overflow-y: scroll;
 }
 
 #input {
