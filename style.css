@@ -1,0 +1,22 @@
+.tabbar { background-color: #00261C; }
+
+#toolbar { background-color: #044C29; }
+
+#block {
+	background-color: Gainsboro; 
+	max-width: 80%;
+	border-radius:10px;
+	padding: 3%;
+	margin: auto;
+	margin-top: 35px;
+	min-height: 50%;
+	font-family: 'Baloo';
+}
+
+#input {
+	min-width: 60%;
+	border-radius: 10px;
+	padding: 3%;
+	margin-top: 35px;
+	margin-left: 15%;
+}

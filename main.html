@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="node_modules/onsenui/js/onsenui.js"></script>
+		<link rel="stylesheet" type="text/css" href="node_modules/onsenui/css/onsenui.css">
+		<link rel="stylesheet" type="text/css" href="node_modules/onsenui/css/onsen-css-components.css">
+
+	    <link rel="stylesheet" type="text/css" href="style.css">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+
+	</head>
+	<body>
+
+		<ons-tabbar position="bottom">
+		  <ons-tab page="map.html" label="Map" icon="map-marker" active="true"></ons-tab>
+		  <ons-tab page="score.html" label="Score" icon="hand-scissors-o"></ons-tab>
+		  <ons-tab page="chat.html" label="Chat" icon="comment-o"></ons-tab>
+		</ons-tabbar>
+
+
+
+		<ons-template id="map.html">
+		  <ons-page>
+		    <ons-toolbar id="toolbar">
+		      <div class="left">
+		        <ons-toolbar-button onclick="fn.open()">
+		          <ons-icon icon="md-menu"></ons-icon>
+		        </ons-toolbar-button>
+		      </div>
+		      <div class="center">
+		        Menu
+		      </div>
+		    </ons-toolbar>
+		    <div id="map" style="height:100px;width:100px"></div>
+		    <script>
+		      var map;
+		      function initMap() {
+		        map = new google.maps.Map(document.getElementById('map'), {
+		          center: {lat: -34.397, lng: 150.644},
+		          zoom: 8
+		        });
+		      }
+		    </script>
+		    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZr937_o4kWxgWpAJuqdxEuRpuhWlKgG0&callback=initMap"
+		  async defer></script>
+		  </ons-page>
+		</ons-template>
+
+		<ons-template id="score.html">
+		  <ons-page>
+		    <ons-toolbar id="toolbar">
+		      <div class="left">
+		        <ons-toolbar-button onclick="fn.open()">
+		          <ons-icon icon="md-menu"></ons-icon>
+		        </ons-toolbar-button>
+		      </div>
+		      <div class="center">
+		        Menu
+		      </div>
+		    </ons-toolbar>
+		    <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+		      Some user and score information??
+		    </p>
+		    
+		  </ons-page>
+		</ons-template>
+
+		<ons-template id="chat.html">
+		  <ons-page>
+		    <ons-toolbar id="toolbar">
+		      <div class="left">
+		        <ons-toolbar-button onclick="fn.open()">
+		          <ons-icon icon="md-menu"></ons-icon>
+		        </ons-toolbar-button>
+		      </div>
+		      <div class="center">
+		        Menu
+		      </div>
+		    </ons-toolbar>
+		    <p style="text-align: center; opacity: 0.6; padding-top: 10px;">
+		      CHAT WITH TEAM SCISSORS
+		    </p>
+		    <div class="container" id="block">
+			    <div id="printHere"></div>
+			</div>
+			<div>
+				<input type="text" id="input" value="Hello" onclick="clearText()"></input>
+				<button style="border-radius:10px;"><ons-icon icon="send-o"></ons-icon></button>
+			</div>
+			
+		  </ons-page>
+		</ons-template>
+
+	<script>
+		window.fn = {};
+
+		window.fn.open = function() {
+		  var menu = document.getElementById('menu');
+		  menu.open();
+		};
+
+		window.fn.load = function(page) {
+		  var content = document.getElementById('content');
+		  var menu = document.getElementById('menu');
+		  content.load(page)
+		    .then(menu.close.bind(menu));
+		};
+	</script>
+	</body>
+</html>
