@@ -4,22 +4,24 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
         <title>Mobilu</title>
+
+        <!-- GOOGLE MAPS -->
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZr937_o4kWxgWpAJuqdxEuRpuhWlKgG0"
+          async defer></script>
 	
-        <!-- Bootstrap CSS -->
-        
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!--  ONSEN + CSS-->
+
+        <script src="node_modules/onsenui/js/onsenui.js"></script>
+        <link rel="stylesheet" type="text/css" href="node_modules/onsenui/css/onsenui.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/onsenui/css/onsen-css-components.css">
+
+        <link rel="stylesheet" type="text/css" href="style.css">
 	
         <!-- Firebase  -->
 	    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-	
-        <!-- jQuery -->
-        <!--<script src="bower_components/jquery/dist/jquery.js"></script>-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    
-        <!--<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
         <!-- Angular JavaScript including routing and resource(?) modules  -->
 
@@ -28,13 +30,24 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.min.js"></script>
 
+        <!-- ONSEN ANGULAR -->
+        <script src="node_modules/onsenui/js/angular-onsenui.js"></script>
+
+        <!-- jQuery After all angular otherwise error.-->
+        <!--<script src="bower_components/jquery/dist/jquery.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
         <!-- The application JavaScript code -->
         <script src="js/app.js"></script>
 
         <!-- Controllers -->
 	    <script src="js/startCtrl.js"></script>
         <script src="js/playCtrl.js"></script>
-
+        <script src="js/mapCtrl.js"></script>
         <!-- Services -->
         <script src="js/firebaseService.js"></script>
 
@@ -45,8 +58,11 @@
         </header>
 
         <div ng-view></div>
+
+            
 	    <!-- Footer -->
         <footer>
+
 	    </footer>								   
     </body>
 </html>

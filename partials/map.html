@@ -1,8 +1,20 @@
+<ons-toolbar id="toolbar">
+    <div class="center">
+        Mobilu
+    </div>
+</ons-toolbar>
 
-<p> {{text}} </p>
+<ons-page>
+<div ng-controller="MapCtrl">
+	<div id="map" style="height:100px;width:100px">MAP HERE</div>
 
-<button ng-click="play()">Play</button>
+	<h1> {{text}} </h1>
 
+	<div ng-repeat="(location,team) in data">
+  		<p>{{location}} belongs to {{team}}</p>
+	</div>
+</div>
+</ons-page>
 
                         
 

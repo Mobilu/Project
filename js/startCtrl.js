@@ -1,7 +1,7 @@
 
 mobiluApp.controller('StartCtrl',function($scope){
 	
-	$scope.text = "Testing";
+	$scope.text = "LOGIN SOMEWHERE";
 
 	$scope.play = function() {
 		//$location.path("/play");

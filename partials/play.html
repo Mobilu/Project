@@ -1,9 +1,13 @@
+<ons-toolbar id="toolbar">
+    <div class="center">
+        Mobilu
+    </div>
+</ons-toolbar>
 
-<h1> {{text}} </h1>
-
-<div ng-repeat="(location,team) in data">
-  <p>{{location}} belongs to {{team}}</p>
-</div>
-
+<ons-tabbar position="bottom">
+	<ons-tab page="partials/map.html" label="Map" icon="map-marker" active="true"></ons-tab>
+	<ons-tab page="partials/score.html" ="Score" icon="hand-scissors-o"></ons-tab>
+	<ons-tab page="partials/chat.html" label="Chat" icon="comment-o"></ons-tab>
+</ons-tabbar>
                         
 
