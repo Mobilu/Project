@@ -38,69 +38,59 @@ mobiluApp.factory('Firebase',function ($resource) {
 
   firebase.initializeApp(config);
 
-    // FUNCTIONS IN firebaseService
+  var loggedInBool = false;
 
-    //Redirect to question if you already are logged in and to start if you're not  
-    /*
-    firebase.auth().onAuthStateChanged(function(user){
-      if(user) {
-        window.location = "#/play";
-      } else if(!user){
-        window.location = "#/start";
-      }
-    });    
-  */
+  // functions IN firebaseService
 
-    // Getting own user-id.
-    this.me = function() {
-      return firebase.auth().currentUser.uid;
-    }
+  // Getting own user-id.
+  this.me = function() {
+    return firebase.auth().currentUser.uid;
+  }
 
-    // LOGIN FUNCTIONS
-    this.login = function(email, password) {
-      firebase.auth().signInWithEmailAndPassword(email, password)
-      .catch(function(error) {
-      // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        if (errorCode === 'auth/wrong-password') {
-          alert('Wrong password.');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error);
-      });
-      
-      firebase.auth().onAuthStateChanged(function(user){
-        if(user) {
-         window.location = "#/play";
-        }
-      });
-    }
-
-    // SIGNOUT FUNCTION
-    this.signOut = function(){
-      firebase.auth().signOut().then(function() {
-        ///console.log('Signed Out');
-      }, function(error) {
-        console.error('Sign Out Error', error);
-      });
-    }
-
-    // NEW ACCOUNT FUNCTION
-    this.newAccount = function(email, password) {
-      user = firebase.auth().createUserWithEmailAndPassword(email, password)
-      .catch(function(error) {
+  // LOGIN FUNCTIONS
+  this.login = function(email, password) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
-      if (errorCode == 'auth/weak-password') {
-        alert('The password is too weak.');
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
       } else {
         alert(errorMessage);
       }
       console.log(error);
     });
+      
+    firebase.auth().onAuthStateChanged(function(user){
+      if(user) {
+        loggedInBool = true;
+      }
+    });
+  }
+
+  // SIGNOUT FUNCTION
+  this.signOut = function(){
+    firebase.auth().signOut().then(function() {
+    }, function(error) {
+      console.error('Sign Out Error', error);
+    });
+  }
+
+  // NEW ACCOUNT FUNCTION
+  this.newAccount = function(email, password) {
+    user = firebase.auth().createUserWithEmailAndPassword(email, password)
+    .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    if (errorCode == 'auth/weak-password') {
+      alert('The password is too weak.');
+    } else {
+      alert(errorMessage);
+    }
+    console.log(error);
+  });
 
     // ADDING NEW USER DATA
     firebase.auth().onAuthStateChanged(function(user){
@@ -119,9 +109,11 @@ mobiluApp.factory('Firebase',function ($resource) {
       cb(snapshot);
     });
   }
+
+  this.loggedInFunc = function() {
+    return loggedInBool;
+  }
    
-
-    // RETURNING THIS
-    return this;
-
+  // RETURNING THIS
+  return this;
 });

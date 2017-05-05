@@ -5,16 +5,26 @@
 </ons-toolbar>
 
 <ons-page>
-	<p style="text-align: center; opacity: 0.6; padding-top: 10px;">
-		      CHAT WITH TEAM SCISSORS
-		    </p>
-		    <div class="container" id="block">
-			    <div id="printHere"></div>
+	<div ng-controller="ChatCtrl">
+		<p style="text-align: center; opacity: 0.6; padding-top: 10px;">CHAT WITH TEAM {{team | uppercase}}</p>
+
+		<div ng-hide="!loggedIN">
+			<div class="container" id="block">
+				<div id="printHere"></div>
 			</div>
 			<div>
 				<input type="text" id="input" value="Hello" onclick="clearText()"></input>
-				<button style="border-radius:10px;"><ons-icon icon="send-o"></ons-icon></button>
+				<ons-button style="border-radius:10px;"><ons-icon icon="send-o"></ons-icon></ons-button>
 			</div>
+		</div>
+
+		<div ng-hide="loggedIN">
+			<p style="text-align: left; opacity: 0.6; padding-top: 10px;">In order to chat you have to sign up or log in. :)</p>
+			<br>
+			<ons-button ng-click="login()">Log in</ons-button>
+			<ons-button ng-click="signup()">Sign up</ons-button>
+		</div>
+	</div>
 </ons-page>
 
                         
