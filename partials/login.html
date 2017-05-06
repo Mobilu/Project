@@ -1,10 +1,24 @@
-<p>email adress:</p>
-<input type="text" ng-model="user.email"></input>
-<p>password:</p>
-<input type="password" ng-model="user.password"></input>
-<br>
-<ons-button ng-click="login()">Log in</ons-button>
-<ons-button ng-click="signup()">Sign up</ons-button>
+<ons-toolbar id="toolbar">
+    <div class="center">
+        Mobilu
+    </div>
+</ons-toolbar>
 
+<ons-page>
+	<div ng-controller="LoginCtrl">
+		<div ng-hide="loggedIn">
+			<p>email adress:</p>
+			<input type="text" ng-model="user.email"></input>
+			<p>password:</p>
+			<input type="password" ng-model="user.password"></input>
+			<br>
+			<ons-button ng-click="login()">Log in</ons-button>
+			<ons-button ng-click="signup()">Sign up</ons-button>
+		</div>
+		<div ng-hide="!loggedIn">
+			<p>Welcome! You are now logged in :)</p>
+		</div>
+	</div>
+</ons-page>
                         
 

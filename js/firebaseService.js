@@ -39,7 +39,8 @@ mobiluApp.factory('Firebase',function ($resource) {
   firebase.initializeApp(config);
 
   var loggedInBool = false;
-
+  var loggedInCallBack = "";
+  var loggedInScope = "";
   // functions IN firebaseService
 
   // Getting own user-id.
@@ -47,8 +48,13 @@ mobiluApp.factory('Firebase',function ($resource) {
     return firebase.auth().currentUser.uid;
   }
 
+  this.amIloggedIn = function(){
+    return loggedInBool;
+  }
+
   // LOGIN FUNCTIONS
   this.login = function(email, password) {
+    console.log("LOGGIN IN NOW")
     firebase.auth().signInWithEmailAndPassword(email, password)
     .catch(function(error) {
       // Handle Errors here.
@@ -96,9 +102,10 @@ mobiluApp.factory('Firebase',function ($resource) {
     firebase.auth().onAuthStateChanged(function(user){
       if(user) {
         var userId = user.uid;
-        var JSONDATA = '{"team" :'+ data[0] +',"haveBeen" : '+data[2]+',"totalDistance" : '+ data[1] +'}'; // TODO
+        var JSONDATA = '{"team" :"'+ data[0] +'","haveBeen" : '+data[2]+',"totalDistance" : '+ data[1] +'}'; // TODO
         console.log(JSONDATA);
         firebase.database().ref('users/' + userId).set(JSON.parse(JSONDATA));
+        loggedInBool = true;
       }
     });
   }
@@ -110,9 +117,6 @@ mobiluApp.factory('Firebase',function ($resource) {
     });
   }
 
-  this.loggedInFunc = function() {
-    return loggedInBool;
-  }
    
   // RETURNING THIS
   return this;

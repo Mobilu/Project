@@ -8,7 +8,7 @@ mobiluApp.controller('StartCtrl',function($scope,userData){
 	$scope.play = function(team) {
 		var current = userData.getTeam();
 		
-		if (current == "") {
+		if (current == '""') {
 			userData.setTeam(team);
 
 			if (team == "rock") {
