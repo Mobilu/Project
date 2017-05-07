@@ -18,6 +18,10 @@ mobiluApp.factory('userData',function ($resource) {
     totalDistance += value;
   }
 
+  this.getDistance = function() {
+    return totalDistance;
+  }
+
   this.getAllData = function() {
     return [team,totalDistance,haveBeen];
   }
@@ -29,6 +33,15 @@ mobiluApp.factory('userData',function ($resource) {
     }
     if (haveBeen.indexOf(place) == -1) {
       haveBeen.push(place);
+    }
+  }
+
+  this.getPlaces = function() {
+    if (haveBeen == '[]') {
+      return '';
+    }
+    else {
+      return haveBeen
     }
   }
 

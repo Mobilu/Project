@@ -6,6 +6,7 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout){
 	Firebase.getLocData(function(data) {
 
 		data = JSON.parse(JSON.stringify(data));
+		console.log(data);
 
     $timeout(function() {
       	$scope.data = data;

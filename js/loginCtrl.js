@@ -6,9 +6,24 @@ mobiluApp.controller('LoginCtrl',function($scope,userData,Firebase,$rootScope){
 
     $scope.login = function() {
         if ($scope.user.email.length > 3 && $scope.user.password.length > 6) {
-            Firebase.login($scope.user.email,$scope.user.password);         
-            $scope.loggedIn = true;
-            $rootScope.loggedIN = true;
+            Firebase.login($scope.user.email,$scope.user.password,function(value){
+                if (value == true) {
+                    $scope.loggedIn = true;
+                    $rootScope.loggedIN = true;
+                }
+            });         
+            
+
+            // TODO SYNC DATA
+
+            data = userData.getAllData();
+            Firebase.getMyData(function(fData){
+                if (fData.team != data[0]) {
+                    userData.setTeam(fData.team);
+                }
+                userData.increaseDistance(fData.distance);
+            })
+
         }
     }
 
@@ -17,9 +32,14 @@ mobiluApp.controller('LoginCtrl',function($scope,userData,Firebase,$rootScope){
         if ($scope.user.email.length > 3 && $scope.user.password.length > 6) {
             var data = userData.getAllData();
             console.log(data);
-            Firebase.newAccount($scope.user.email,$scope.user.password,data);            
-            $scope.loggedIn = true;
-            $rootScope.loggedIN = true;
+            Firebase.newAccount($scope.user.email,$scope.user.password,data,function(value){
+                if (value == true) {
+                    $scope.loggedIn = true;
+                    $rootScope.loggedIN = true;
+                }
+            });         
+            //$scope.loggedIn = true;
+            //$rootScope.loggedIN = true;
         }
     }
 

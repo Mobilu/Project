@@ -5,9 +5,19 @@
 </ons-toolbar>
 
 <ons-page>
-	<p style="text-align: center; opacity: 0.6; padding-top: 20px;">
-		      Some user and score information??
-		    </p>
+	<div ng-controller="ScoreCtrl">
+		<h2 style="text-align: center; opacity: 0.6; padding-top: 20px;">Scoreboard</h2>
+		<p style="text-align: center; opacity: 0.6;">Your team: </p>
+		<div>Team {{team}} controll {{number}} out of {{total}} buildings.</div>
+		<div ng-hide="!loggedIN">
+			<p style="text-align: center; opacity: 0.6;">You: </p>
+			<div>You have been to {{yourNumber}} buildings.</div>
+			<div>You have walked {{distance}} km.</div>
+		</div>
+		<div ng-hide="loggedIN">
+			<p>Please log in to see your own stats ;)</p>
+		</div>
+	</div>
 </ons-page>
 
                         
