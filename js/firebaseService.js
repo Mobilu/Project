@@ -129,6 +129,14 @@ mobiluApp.factory('Firebase',function ($resource) {
     });
   }
 
+  this.getTeamData = function(cb) {
+    var reference = firebase.database().ref('teams');
+    reference.once('value', function(snapshot) {
+      var data = JSON.parse(JSON.stringify(snapshot));
+      cb(data);
+    });
+  }
+
   this.getLocDataNumber = function(team,cb) {
     var reference = firebase.database().ref('locations');
     reference.once('value',function(snapshot){
