@@ -22,6 +22,7 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap){
             stylers: [{visibility: 'off'}]
           }
         ]);
+        
   	});
 
 	Firebase.getLocData(function(data) {

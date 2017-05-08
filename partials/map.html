@@ -8,7 +8,16 @@
 <div ng-controller="MapCtrl">
 
 	<div id="map" map-lazy-load="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLTqYGgmbIGdjSQxeRb9JjVQ5Tq4FANdc" map-lazy-load-params="googleMapsUrl">
-  		<ng-map zoom="16" center="Kungliga Tekniska Högskolan Arkitekturskolan, Osquars backe, Stockholm, Sverige" style="height:200px"></ng-map>
+  		<ng-map zoom="16" center="Osquars backe 10 114 28 Stockholm Sverige" style="height:200px">
+   			<marker position="[59.347956, 18.072451]"></marker>
+   			<marker position="[59.347354, 18.072172]"></marker>
+   			<marker position="[59.347356, 18.069983]"></marker>
+   			<marker position="[59.347448, 18.073708]"></marker>
+   			<marker position="[59.346959, 18.07283]"></marker>
+
+   			<marker position="[59.346734, 18.07380]"></marker>
+   			<marker position="[59.347985, 18.074815]"></marker>
+  		</ng-map>
 	</div>
 
 	<h1> {{text}} </h1>
