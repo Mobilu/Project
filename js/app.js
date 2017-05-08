@@ -1,5 +1,5 @@
 
-var mobiluApp = angular.module('mobilu', ['ngRoute','ngResource','onsen','ngMap']);
+var mobiluApp = angular.module('mobilu', ['ngRoute','ngResource','onsen','ngMap','ngSanitize']);
 
 mobiluApp.config(['$routeProvider',
   function($routeProvider) {
