@@ -1,10 +1,18 @@
 
 mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap){
 	var first = '<p class="fa fa-hand-';
-	var last = '-o fa-4x"  aria-hidden="true"></p>';
+	var last = '-o fa-3x"  aria-hidden="true"></p>';
 
 	//var first = ""; var last = "";
+	/*
+	function showPosition(position) {
+    	console.log(position)
+    	$scope.myCoords = '<custom-marker position="['+ position.coords.latitude +','+ position.coords.longitude +']"><div><i class="fa fa-user-o fa-4x" aria-hidden="true"></i></div></custom-marker>'
+		console.log($scope.myCoords)
+	}
 
+	navigator.geolocation.getCurrentPosition(showPosition);
+*/
 	$scope.text = "Conquer-Info:";
 	$scope.library = "";
 	$scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLTqYGgmbIGdjSQxeRb9JjVQ5Tq4FANdc";
@@ -34,12 +42,6 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap){
 		data = JSON.parse(JSON.stringify(data));
 		console.log(data);
 
-		//for (item in data){
-		//	console.log(item);
-		//	//document.getElementById(item).innerHTML = '<i class="fa fa-' + data[item]+ '" aria-hidden="true"></i>'
-		//	$scope.myHTML = first+data[item]+last;
-		//}
-
 		$scope.library = first + data['library'] + last;
 		$scope.architecture = first + data['architecture'] + last;
 		$scope.nymble = first + data['nymble'] + last;
@@ -47,6 +49,7 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap){
 		$scope.dbuilding = first + data['dbuilding'] + last;
 		$scope.ebuilding = first + data['ebuilding'] + last;
 		$scope.fbiulding = first + data['fbiulding'] + last;
+		$scope.me = first + "peace" + last;
 
     $timeout(function() {
       	$scope.data = data;

@@ -124,7 +124,7 @@ mobiluApp.factory('Firebase',function ($resource) {
 
   this.getLocData = function(cb) {
     var reference = firebase.database().ref('locations');
-    reference.once('value', function(snapshot) {
+    reference.on('value', function(snapshot) {
       cb(snapshot);
     });
   }

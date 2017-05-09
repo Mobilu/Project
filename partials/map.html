@@ -8,7 +8,7 @@
 <div ng-controller="MapCtrl">
 
 	<div id="map" map-lazy-load="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLTqYGgmbIGdjSQxeRb9JjVQ5Tq4FANdc" map-lazy-load-params="googleMapsUrl">
-  		<ng-map zoom="16" center="Osquars backe 10 114 28 Stockholm Sverige" style="height:200px">
+  		<ng-map zoom="17" center="Osquars backe 10 114 28 Stockholm Sverige" style="height:400px" styles="[{stylers:[{hue:'#044C29'},{visibility:'simplified'},{gamma:0.5},{weight:0.5}]},{elementType:'labels',stylers:[{visibility:'off'}]},{featureType:'water',stylers:[{color:'#044C29'}]}]">
    			<custom-marker position="[59.347956, 18.072451]">
    				<div ng-bind-html="library">
    					<i class="fa fa-circle-o fa-4x" aria-hidden="true"></i>
@@ -44,6 +44,12 @@
    					<i class="fa fa-circle-o fa-4x" aria-hidden="true"></i>
    				</div>
    			</custom-marker>
+
+        <custom-marker position="current">
+          <div ng-bind-html="me" id="me">
+            <i class="fa fa-user-o fa-4x" aria-hidden="true"></i>
+          </div>
+        </custom-marker>
   		</ng-map>
 	</div>
 
