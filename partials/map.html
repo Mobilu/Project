@@ -8,44 +8,45 @@
 <div ng-controller="MapCtrl">
 
 	<div id="map" map-lazy-load="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLTqYGgmbIGdjSQxeRb9JjVQ5Tq4FANdc" map-lazy-load-params="googleMapsUrl">
-  		<ng-map zoom="17" center="Osquars backe 10 114 28 Stockholm Sverige" style="height:400px" styles="[{stylers:[{hue:'#044C29'},{visibility:'simplified'},{gamma:0.5},{weight:0.5}]},{elementType:'labels',stylers:[{visibility:'off'}]},{featureType:'water',stylers:[{color:'#044C29'}]}]">
+  		<ng-map zoom="17" center="Osquars backe 10 114 28 Stockholm Sverige" style="height:350px" styles="[{stylers:[{hue:'#044C29'},{visibility:'simplified'},{gamma:0.5},{weight:0.5}]},{elementType:'labels',stylers:[{visibility:'off'}]},{featureType:'water',stylers:[{color:'#044C29'}]}]">
    			<custom-marker position="[59.347956, 18.072451]">
-   				<div ng-bind-html="library">
+   				<div ng-bind-html="library" ng-click="conquer('library',[59.347956, 18.072451])">
    					<i class="fa fa-circle-o fa-4x" aria-hidden="true"></i>
    				</div>
    			</custom-marker>
    			<custom-marker position="[59.347354, 18.072172]">
-   				<div ng-bind-html="architecture">
+   				<div ng-bind-html="architecture" ng-click="conquer('architecture',[59.347354, 18.072172])">
    					<p class="fa fa-circle-o fa-4x" aria-hidden="true"></p>
    				</div></custom-marker>
-   			<custom-marker position="[59.347356, 18.069983]">
-   				<div ng-bind-html="nymble">
+   			<custom-marker position="[59.347356, 18.071]">
+   				<div ng-bind-html="nymble" ng-click="conquer('nymble',[59.347356, 18.071])">
    					<i class="fa fa-rock fa-4x" aria-hidden="true"></i>
    				</div>
    			</custom-marker>
    			<custom-marker position="[59.347448, 18.073708]">
-				<div ng-bind-html="borggarden">
+				<div ng-bind-html="borggarden" ng-click="conquer('borggarden',[59.347448, 18.073708])">
    					<i class="fa fa-circle-o fa-4x" aria-hidden="true"></i>
    				</div>
    			</custom-marker>
-   			<custom-marker position="[59.346959, 18.07283]">
-   				<div ng-bind-html="dbuilding">
+   			<custom-marker position="[59.3471, 18.07283]">
+   				<div ng-bind-html="dbuilding" ng-click="conquer('dbuilding',[59.3471, 18.07283])">
    					<i class="fa fa-circle-o fa-4x" aria-hidden="true"></i>
    				</div>
    			</custom-marker>
 
-   			<custom-marker position="[59.346734, 18.07380]">
-   				<div ng-bind-html="ebuilding">
+   			<custom-marker position="[59.346934, 18.07380]">
+   				<div ng-bind-html="ebuilding" ng-click="conquer('ebuilding',[59.346934, 18.07380])">
    					<i class="fa fa-circle-o fa-4x" aria-hidden="true"></i>
    				</div>
    			</custom-marker>
-   			<custom-marker position="[59.347985, 18.074815]">
-   				<div ng-bind-html="fbiulding">
+   			<custom-marker position="[59.348230, 18.074115]">
+   				<div ng-bind-html="fbiulding" ng-click="conquer('fbiulding',[59.348230, 18.074115])">
    					<i class="fa fa-circle-o fa-4x" aria-hidden="true"></i>
    				</div>
    			</custom-marker>
 
         <custom-marker position="current">
+        <!--<custom-marker position="[59.347956, 18.07283]">-->
           <div ng-bind-html="me" id="me">
             <i class="fa fa-user-o fa-4x" aria-hidden="true"></i>
           </div>
@@ -53,11 +54,11 @@
   		</ng-map>
 	</div>
 
-	<h1> {{text}} </h1>
+    <p>Team paper:<i class="fa fa-hand-paper-o"  aria-hidden="true"></i></p>
+    <p>Team rock:<i class="fa fa-hand-rock-o"  aria-hidden="true"></i></p>
+    <p>Team scissors:<i class="fa fa-hand-scissors-o"  aria-hidden="true"></i></p>
+    <p>Your location:<i class="fa fa-hand-peace-o" aria-hidden="true"></i></p>
 
-	<div ng-repeat="(location,team) in data">
-  		<p>{{location}} belongs to {{team}}</p>
-	</div>
 </div>
 </ons-page>
 

@@ -2,18 +2,21 @@
 mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap){
 	var first = '<p class="fa fa-hand-';
 	var last = '-o fa-3x"  aria-hidden="true"></p>';
-
+	$scope.coor = "";
+	$scope.place= "";
 	//var first = ""; var last = "";
-	/*
+	
 	function showPosition(position) {
-    	console.log(position)
-    	$scope.myCoords = '<custom-marker position="['+ position.coords.latitude +','+ position.coords.longitude +']"><div><i class="fa fa-user-o fa-4x" aria-hidden="true"></i></div></custom-marker>'
-		console.log($scope.myCoords)
+		//console.log(position.coords);
+		var distance = 0;
+		distance += ($scope.coor[0] - position.coords.latitude)*($scope.coor[0] - position.coords.latitude);
+		distance += ($scope.coor[1] - position.coords.longitude)*($scope.coor[1] - position.coords.longitude)
+		console.log(Math.sqrt(distance)*82.5);
+		//console.log($scope.place);
+
 	}
 
-	navigator.geolocation.getCurrentPosition(showPosition);
-*/
-	$scope.text = "Conquer-Info:";
+	$scope.text = "Info:";
 	$scope.library = "";
 	$scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLTqYGgmbIGdjSQxeRb9JjVQ5Tq4FANdc";
 
@@ -52,9 +55,15 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap){
 		$scope.me = first + "peace" + last;
 
     $timeout(function() {
-      	$scope.data = data;
+    //  	$scope.data = data;
       },1);
 
 	});
+
+	$scope.conquer = function(place,coords) {
+		$scope.place = place;
+		$scope.coor  = coords;
+		navigator.geolocation.getCurrentPosition(showPosition);
+	}
 
 });
