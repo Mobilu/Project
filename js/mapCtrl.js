@@ -1,31 +1,32 @@
 
-mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap){
+mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap,userData){
 	var first = '<p class="fa fa-hand-';
 	var last = '-o fa-3x"  aria-hidden="true"></p>';
 	$scope.coor = "";
 	$scope.place= "";
-	//var first = ""; var last = "";
+	var myTeam = userData.getTeam();
 	
 	function showPosition(position) {
 		//console.log(position.coords);
 		var distance = 0;
 		distance += ($scope.coor[0] - position.coords.latitude)*($scope.coor[0] - position.coords.latitude);
 		distance += ($scope.coor[1] - position.coords.longitude)*($scope.coor[1] - position.coords.longitude)
-		console.log(Math.sqrt(distance)*82.5);
-		//console.log($scope.place);
-
+		distance = Math.sqrt(distance)*82.5;
+		if (distance >= 1.3) {
+			console.log("TOO FAR AWAY")
+		}
+		else {
+			if ($scope.place != "") {
+				Firebase.conquer($scope.place,myTeam);
+			}
+		}
 	}
 
-	$scope.text = "Info:";
 	$scope.library = "";
 	$scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLTqYGgmbIGdjSQxeRb9JjVQ5Tq4FANdc";
 
 	NgMap.getMap().then(function(map) {
 		map.setOptions({disableDefaultUI: true,draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true})
-		console.log(map);
-   		console.log(map.getCenter());
-    	console.log('markers', map.markers);
-    	console.log('shapes', map.shapes);
     	map.setOptions([
           {
             featureType: 'poi.business',
@@ -33,17 +34,18 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap){
           },
           {
             featureType: 'transit',
-            elementType: 'labels.icon',
             stylers: [{visibility: 'off'}]
           }
         ]);
+         var center = map.getCenter();
+ 		google.maps.event.trigger(map, "resize");
+ 		map.setCenter(center);
 
   	});
 
 	Firebase.getLocData(function(data) {
 
 		data = JSON.parse(JSON.stringify(data));
-		console.log(data);
 
 		$scope.library = first + data['library'] + last;
 		$scope.architecture = first + data['architecture'] + last;

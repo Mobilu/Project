@@ -139,7 +139,7 @@ mobiluApp.factory('Firebase',function ($resource) {
 
   this.getLocDataNumber = function(team,cb) {
     var reference = firebase.database().ref('locations');
-    reference.once('value',function(snapshot){
+    reference.on('value',function(snapshot){
       data = JSON.parse(JSON.stringify(snapshot));
       var sum = 0; buildings = 0;
       for (item in data){
@@ -159,6 +159,10 @@ mobiluApp.factory('Firebase',function ($resource) {
       var data = JSON.parse(JSON.stringify(snapshot));
       cb(data);
     });
+  }
+
+  this.conquer = function(place,team) { 
+    firebase.database().ref('/locations/' + place).set(team); 
   }
 
    

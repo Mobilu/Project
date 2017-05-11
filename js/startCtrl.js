@@ -23,7 +23,10 @@ mobiluApp.controller('StartCtrl',function($scope,userData){
 				$scope.rock = true;
 				$scope.paper = true;
 			}
-		}	
-		window.location.hash = "#!/play";
+		}
+		//hyper.log(window.location)
+		//window.location = "/#!/play";
+		window.location.hash = "!/play";
+		//hyper.log(window.location)
 	}
 });
