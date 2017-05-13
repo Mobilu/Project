@@ -83,6 +83,7 @@ mobiluApp.factory('Firebase',function ($resource) {
     }, function(error) {
       console.error('Sign Out Error', error);
     });
+    loggedInBool = false;
   }
 
   // NEW ACCOUNT FUNCTION
@@ -106,7 +107,8 @@ mobiluApp.factory('Firebase',function ($resource) {
       if(user) {
         cb(true);
         var userId = user.uid;
-        var JSONDATA = '{"team" :"'+ data[0] +'","haveBeen" : '+data[2]+',"totalDistance" : '+ data[1] +'}'; // TODO
+        var JSONDATA = '{"team" :"'+ data[0] +'","haveBeen" : "['+data[2]+']","totalDistance" : '+ data[1] +'}'; // TODO
+        //console.log(JSONDATA);
         firebase.database().ref('users/' + userId).set(JSON.parse(JSONDATA));
         loggedInBool = true;
 
@@ -153,16 +155,44 @@ mobiluApp.factory('Firebase',function ($resource) {
   }
 
   this.getMyData = function(cb) {
+firebase.auth().onAuthStateChanged(function(user){
+      if(user) {
+
     var userId = firebase.auth().currentUser.uid; 
     var reference = firebase.database().ref('users/' + userId);
     reference.once('value', function(snapshot) {
       var data = JSON.parse(JSON.stringify(snapshot));
       cb(data);
     });
+
+}});
+
   }
 
   this.conquer = function(place,team) { 
     firebase.database().ref('/locations/' + place).set(team); 
+  }
+
+  this.setMyPlaces = function(array) {
+    if (loggedInBool) {
+      var userId = firebase.auth().currentUser.uid; 
+      firebase.database().ref('/users/' + userId + "/haveBeen").set(String(array));
+    }
+  }
+
+  this.getMyPlaces = function(cb) {
+    firebase.auth().onAuthStateChanged(function(user){
+      if(user) {
+
+      var ref = firebase.auth();
+      var userId = ref.currentUser.uid; 
+      var reference = firebase.database().ref('users/' + userId);
+      reference.on('value', function(snapshot) {
+        var data = JSON.parse(JSON.stringify(snapshot));
+        cb(data.haveBeen.split(",").length);
+      });
+    }});
+
   }
 
    

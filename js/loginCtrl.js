@@ -13,11 +13,12 @@ mobiluApp.controller('LoginCtrl',function($scope,userData,Firebase,$rootScope){
                 }
             });         
             
-
+            $scope.user = {email:"", password:""};
             // TODO SYNC DATA
 
             data = userData.getAllData();
             Firebase.getMyData(function(fData){
+                console.log(fData)
                 if (fData.team != data[0]) {
                     userData.setTeam(fData.team);
                 }
@@ -38,9 +39,19 @@ mobiluApp.controller('LoginCtrl',function($scope,userData,Firebase,$rootScope){
                     $rootScope.loggedIN = true;
                 }
             });         
+
+            $scope.user = {email:"", password:""};
             //$scope.loggedIn = true;
+            Firebase.setMyPlaces(userData.getPlacesArray())
             //$rootScope.loggedIN = true;
+
         }
+    }
+
+    $scope.logout = function() {
+        Firebase.signOut();
+        $scope.loggedIn = false;
+        $rootScope.loggedIN = false;
     }
 
 });

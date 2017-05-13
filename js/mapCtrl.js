@@ -12,12 +12,14 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap,userData)
 		distance += ($scope.coor[0] - position.coords.latitude)*($scope.coor[0] - position.coords.latitude);
 		distance += ($scope.coor[1] - position.coords.longitude)*($scope.coor[1] - position.coords.longitude)
 		distance = Math.sqrt(distance)*82.5;
-		if (distance >= 1.3) {
+		if (distance >= 2) {
 			console.log("TOO FAR AWAY")
 		}
 		else {
 			if ($scope.place != "") {
 				Firebase.conquer($scope.place,myTeam);
+				userData.addPlace($scope.place);
+				Firebase.setMyPlaces(userData.getPlacesArray());
 			}
 		}
 	}

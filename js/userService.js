@@ -28,17 +28,26 @@ mobiluApp.factory('userData',function ($resource) {
 
   this.addPlace = function(place) {
     if (haveBeen == '[]') {
-      haveBeen = [];
-      console.log("YAS QWEEN");
+      haveBeen = [place];
     }
-    if (haveBeen.indexOf(place) == -1) {
+    else if (haveBeen.indexOf(place) == -1) {
       haveBeen.push(place);
+      //console.log(haveBeen);
     }
   }
 
-  this.getPlaces = function() {
+  this.getPlaces = function(cb) {
     if (haveBeen == '[]') {
-      return '';
+      cb(0);
+    }
+    else {
+      cb(haveBeen.length);
+    }
+  }
+
+  this.getPlacesArray = function() {
+    if (haveBeen == '[]') {
+      return [];
     }
     else {
       return haveBeen
