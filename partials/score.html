@@ -4,25 +4,25 @@
     </div>
 </ons-toolbar>
 
-<ons-page>
-	<div ng-controller="ScoreCtrl">
-		<h2 style="text-align: center; opacity: 0.6; padding-top: 20px;">Scoreboard</h2>
-		<p style="text-align: center; opacity: 0.6;">Your team: </p>
-		<p>Team {{team}} controll {{number}} out of {{total}} buildings.</p>
-		<div ng-hide="!loggedIN">
-			<p style="text-align: center; opacity: 0.6;">You: </p>
-			<div>You have been to {{yourNumber}} buildings.</div>
-			<div>You have walked {{distance}} km.</div>
+<ons-page ng-controller="ScoreCtrl">
+	<div style="padding-top: 20px;"></div>
+	<ons-list modifier="inset">
+		<h2 style="text-align: center; opacity: 0.6;">Scoreboard</h2>
+    	<ons-list-header modifier="longdivider">Your team: </ons-list-header>
+    	<ons-list-item modifier="longdivider">Team {{team2}} controll {{number}} out of {{total}} buildings.</ons-list-item>
+    	<div ng-hide="!loggedIN">
+    		<ons-list-header modifier="longdivider">You: </ons-list-header>
+    		<ons-list-item modifier="longdivider">You have been to {{yourNumber}} buildings.</ons-list-item>
 
-			<p style="text-align: center; opacity: 0.6;">All Teams: </p>
-			<div>Members in Paper team: {{paper}}.</div>
-			<div>Members in Rock team: {{rock}}.</div>
-			<div>Members in Scissors team: {{scissors}}.</div>
+    		<ons-list-header modifier="longdivider">All teams: </ons-list-header>
+    		<ons-list-item modifier="longdivider">Members in Paper team: {{paper}}.</ons-list-item>
+    		<ons-list-item modifier="longdivider">Members in Rock team: {{rock}}.</ons-list-item>
+    		<ons-list-item modifier="longdivider">Members in Scissors team: {{scissors}}.</ons-list-item>
+    	</div>
+    	<div ng-hide="loggedIN">
+    		<ons-list-item modifier="longdivider">Please log in to see your own stats ;)</ons-list-item>
 		</div>
-		<div ng-hide="loggedIN">
-			<p>Please log in to see your own stats ;)</p>
-		</div>
-	</div>
+  	</ons-list>
 </ons-page>
 
                         

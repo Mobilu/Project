@@ -1,8 +1,8 @@
 
-mobiluApp.controller('ScoreCtrl',function($scope,userData,Firebase,$rootScope){
+mobiluApp.controller('ScoreCtrl',function($scope,userData,Firebase){
 
-    $scope.team = userData.getTeam();
-    Firebase.getLocDataNumber($scope.team,function(data){
+    $scope.team2 = userData.getTeam();
+    Firebase.getLocDataNumber($scope.team2,function(data){
 		$scope.number = data[0];
 		$scope.total = data[1];
 	})
