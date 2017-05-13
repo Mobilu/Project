@@ -1,29 +1,30 @@
 
 <ons-page>
+	<div>
+		<h1 style="text-align: center; opacity: 0.6; padding: 25px;">Mobilu</h1>
 
-	<h1 style="text-align: center; opacity: 0.6; padding: 25px;">Mobilu</h1>
+		<p style="text-align: center; opacity: 0.6; padding: 10px;">How to play:</p>
 
-	<p style="text-align: center; opacity: 0.6; padding: 10px;">How to play:</p>
+		<p style="text-align: left; opacity: 0.6; padding-bottom: 20px; padding-top: 20px; padding-right: 10px; padding-left: 10px;">You select a team and work with your team to 'occupy' KTH campus. You walk to a building and ...LOREM IPSUM ... Be careful you only get to choose a team once :)</p>
 
-	<p style="text-align: left; opacity: 0.6; padding-bottom: 20px; padding-top: 20px; padding-right: 10px; padding-left: 10px;">You select a team and work with your team to 'occupy' KTH campus. You walk to a building and ...LOREM IPSUM ... Be careful you only get to choose a team once :)</p>
+		<p style="text-align: center; opacity: 0.6; padding: 10px;">Choose your team:</p>
 
-	<p style="text-align: center; opacity: 0.6; padding: 10px;">Choose your team:</p>
+		<div class="container-fluid">
+			<div class="row">
 
-	<div class="container-fluid">
-		<div class="row">
-
-			<div class="col-xs-4">
-				<ons-button class="teamButton" ng-click="play('paper')" ng-disabled="paper"> <i class="fa fa-hand-paper-o fa-2x" aria-hidden="true"></i> </ons-button>
-			</div>
-			<div class="col-xs-4">
-				<ons-button class="teamButton" ng-click="play('rock')" ng-disabled="rock"> <i class="fa fa-hand-rock-o fa-2x" aria-hidden="true"></i> </ons-button>
-			</div>
-			<div class="col-xs-4">
-				<ons-button class="teamButton" ng-click="play('scissors')" ng-disabled="scissors"> <i class="fa fa-hand-scissors-o fa-2x" aria-hidden="true"></i> </ons-button>
+				<div class="col-xs-4">
+					<ons-button class="teamButton" ng-click="play('paper')" ng-disabled="paper"> <i class="fa fa-hand-paper-o fa-2x" aria-hidden="true"></i> </ons-button>
+				</div>
+				<div class="col-xs-4">
+					<ons-button class="teamButton" ng-click="play('rock')" ng-disabled="rock"> <i class="fa fa-hand-rock-o fa-2x" aria-hidden="true"></i> </ons-button>
+				</div>
+				<div class="col-xs-4">
+					<ons-button class="teamButton" ng-click="play('scissors')" ng-disabled="scissors"> <i class="fa fa-hand-scissors-o fa-2x" aria-hidden="true"></i> </ons-button>
+				</div>
 			</div>
 		</div>
 	</div>
-
+	<div ng-hide="!loggedIn">You have already chosen a team.</div>
 	<div>
 		<p>Already a member? Choose your team and log in from the login menu! :)</p>
 	</div>
