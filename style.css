@@ -36,3 +36,15 @@
 	background-color: #044C29;
 	color: white
 }
+
+p {
+	text-align: center;
+	opacity: 0.6;
+	padding: 10px
+}
+
+img {
+	padding-top: 20px;
+	display: block;
+    margin: auto;
+}

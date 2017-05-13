@@ -5,20 +5,27 @@
 </ons-toolbar>
 
 <ons-page>
-	<div ng-controller="LoginCtrl">
-		<div ng-hide="loggedIn">
-			<p>email adress:</p>
-			<input type="text" ng-model="user.email"></input>
-			<p>password:</p>
-			<input type="password" ng-model="user.password"></input>
-			<br>
-			<ons-button ng-click="login()">Log in</ons-button>
-			<ons-button ng-click="signup()">Sign up</ons-button>
-		</div>
-		<div ng-hide="!loggedIn">
+	<div ng-controller="LoginCtrl" style="text-align: center; margin-top: 30px;">
+		<div ng-hide="loggedIn" </div>
+			<p>Log in to save your data and keep playing later :)</p>
+    		<div>
+      			<ons-input id="username" modifier="underbar" placeholder="Email" float ng-model="user.email"></ons-input>
+    		</div>
+    		<div>
+      			<ons-input id="password" modifier="underbar" type="password" placeholder="Password" ng-model="user.password" float></ons-input>
+    		</div>
+    		<div style="margin-top: 30px;">
+      			<ons-button ng-click="signup()">Sign up</ons-button>
+      			<ons-button ng-click="login()">Log in</ons-button>
+    		</div>
+    		<img src="http://placekitten.com/g/300/200"></img>
+  		</div>
+  		<div ng-hide="!loggedIn">
 			<p>Welcome! You are now logged in :)</p>
+			<img src="http://placekitten.com/g/500/200"></img>
 		</div>
-	</div>
+  	</div>
+
 </ons-page>
                         
 
