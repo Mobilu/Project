@@ -1,0 +1,16 @@
+{
+  "short_name": "Mobilu",
+  "name": "Johanna and Pers Mobilu Conquer App",
+  "icons": [
+    {
+      "src": "test.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "https://mobilu.github.io/Lab1/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#FFA500"
+}
+

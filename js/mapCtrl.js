@@ -69,7 +69,7 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,$interval,NgMap
 	$scope.conquer = function(place,coords) {
 		$scope.place = place;
 		$scope.coor  = coords;
-		navigator.geolocation.getCurrentPosition(showPosition,function(){console.log("error")},{enableHighAccuracy: true});
+		navigator.geolocation.getCurrentPosition(showPosition);
 	}
 
 	function onSuccess(position) {
