@@ -81,7 +81,7 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,$interval,NgMap
 		$scope.location[1] = tempCoord[1]*multiplier + (1-multiplier)*$scope.old[1];
 		
 		$scope.old = $scope.location;
-		multiplier = 0.5;
+		multiplier = 0.2;
 		$scope.showLocation = "[" + ($scope.location[0]-0.008346800000005317) + "," + ($scope.location[1]-0.013561799999997959) + "]";
 		//console.log($scope.showLocation)
 	}
