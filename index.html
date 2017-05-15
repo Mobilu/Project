@@ -73,7 +73,10 @@
         </header>
 
         <div ng-view></div>
-
+        <!-- "Stopping" refreshing page -->
+        <script>
+        window.onbeforeunload = function () {return false;}
+        </script>
             
 	    <!-- Footer -->
         <footer>

@@ -2,12 +2,15 @@
 mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,$interval,NgMap,userData){
 	
 	onDeviceReady();
-	$scope.location = "[10,10]";
+	$scope.location = [10,10];
+	$scope.showLocation = [10,10];
+	$scope.old = [0,0];
 	var first = '<p class="fa fa-hand-';
 	var last = '-o fa-3x"  aria-hidden="true"></p>';
 	$scope.coor = "";
 	$scope.place= "";
 	var myTeam = userData.getTeam();
+	var multiplier = 1;
 	
 	function showPosition(position) {
 		//console.log(position.coords);
@@ -73,14 +76,20 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,$interval,NgMap
 	}
 
 	function onSuccess(position) {
-		$scope.location = "["+position.coords.latitude+","+position.coords.longitude+"]";
-		console.log("new position: " + $scope.location)
+		var tempCoord = [position.coords.latitude, position.coords.longitude];
+		$scope.location[0] = tempCoord[0]*multiplier + (1-multiplier)*$scope.old[0];
+		$scope.location[1] = tempCoord[1]*multiplier + (1-multiplier)*$scope.old[1];
+		
+		$scope.old = $scope.location;
+		multiplier = 0.5;
+		$scope.showLocation = "[" + ($scope.location[0]-0.008346800000005317) + "," + ($scope.location[1]-0.013561799999997959) + "]";
+		//console.log($scope.showLocation)
 	}
 
 	function onDeviceReady() {
   		$interval(function() {
    			navigator.geolocation.getCurrentPosition(onSuccess);
-  		}, 10000)
+  		}, 1000)
 	}
 
 });
