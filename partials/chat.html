@@ -12,9 +12,9 @@
 
 			<div class="container" id="block" ng-model="textbox">
 				<div ng-repeat="element in messageList">
-					<span ng-bind="element.mess"></span>
+					<span>{{element["0"]}}: {{element["1"]}}</span>
 				</div>
-				<div>{{messageList}}</div>
+				<!--<div>{{messageList}}</div>-->
 			</div>
 			<div>
 				<input type="text" ng-model="chatuser" value="Anon">Username: </input>

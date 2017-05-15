@@ -7,12 +7,12 @@ mobiluApp.controller('ChatCtrl',function($scope,userData,Firebase,$timeout,$root
     $scope.messageList = [];
     $scope.msginput = "";
 
-    $scope.f = firebase.database().ref("chatrooms/rockchat");
-    $scope.f.on('value', function(snapshot) {
-       messageList.push(snapshot.val());
-    });
+    //$scope.f = firebase.database().ref("chatrooms/rockchat");
+    //$scope.f.on('value', function(snapshot) {
+    //   messageList.push(snapshot.val());
+    //});
 
-    $scope.sendmsg = function(){
+    /*$scope.sendmsg = function(){
     	var db = firebase.database();
     	var chatRoom;
     	if ($scope.team == "paper") {
@@ -35,12 +35,24 @@ mobiluApp.controller('ChatCtrl',function($scope,userData,Firebase,$timeout,$root
     };
 
     $scope.updateText = function(){
-    	/*var element = {
+    	var element = {
     	    mess: $scope.msginput
         }
 
-        $scope.messageList.push(element);*/
+        $scope.messageList.push(element);
+    */
 
+    $scope.sendmsg = function(){
+        Firebase.sendMessage($scope.team,$scope.msginput,$scope.chatuser)
     };
+
+    $scope.messageReader = function(){
+        Firebase.messageReader($scope.team,function(data){
+            $scope.messageList = data;
+            console.log(data);
+        })
+    }
+
+    $scope.messageReader();
 
 });

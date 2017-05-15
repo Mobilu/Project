@@ -133,7 +133,7 @@ mobiluApp.factory('Firebase',function ($resource) {
 
   this.getTeamData = function(cb) {
     var reference = firebase.database().ref('teams');
-    reference.once('value', function(snapshot) {
+    reference.on('value', function(snapshot) {
       var data = JSON.parse(JSON.stringify(snapshot));
       cb(data);
     });
@@ -155,7 +155,7 @@ mobiluApp.factory('Firebase',function ($resource) {
   }
 
   this.getMyData = function(cb) {
-firebase.auth().onAuthStateChanged(function(user){
+    firebase.auth().onAuthStateChanged(function(user){
       if(user) {
 
     var userId = firebase.auth().currentUser.uid; 
@@ -189,12 +189,51 @@ firebase.auth().onAuthStateChanged(function(user){
       var reference = firebase.database().ref('users/' + userId);
       reference.on('value', function(snapshot) {
         var data = JSON.parse(JSON.stringify(snapshot));
-        cb(data.haveBeen.split(",").length);
+        console.log(data);
+        if (data == null) {
+          cb(0);
+        }
+        else {
+          cb(data.haveBeen.split(",").length);
+        }
       });
-    }});
-
+    }})
   }
 
+  this.sendMessage = function(team, message, username) {
+    var db = firebase.database();
+    var chatRoom;
+    if (team == "paper") {
+      var chatRoom = "chatrooms/paperchat";
+    }
+    else if (team == "rock") {
+      var chatRoom = "chatrooms/rockchat";
+    }
+    else {
+      var chatRoom = "chatrooms/scissorchat";
+    };
+    var msgMondiale = db.ref(chatRoom);
+    msgMondiale.push([username,message]);
+  }
+
+  this.messageReader = function(team,cb) {
+    console.log("Here1")
+    if (team == "paper") {
+      var chatRoom = "chatrooms/paperchat";
+    }
+    else if (team == "rock") {
+      var chatRoom = "chatrooms/rockchat";
+    }
+    else {
+      var chatRoom = "chatrooms/scissorchat";
+    };
+
+    var reference = firebase.database().ref(chatRoom);
+    reference.on('value', function(snapshot) {
+      console.log("HERE2")
+      cb(JSON.parse(JSON.stringify(snapshot)));  
+    });
+  }
    
   // RETURNING THIS
   return this;
