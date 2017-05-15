@@ -1,5 +1,8 @@
 
-mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap,userData){
+mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,$interval,NgMap,userData){
+	
+	onDeviceReady();
+	$scope.location = "[10,10]";
 	var first = '<p class="fa fa-hand-';
 	var last = '-o fa-3x"  aria-hidden="true"></p>';
 	$scope.coor = "";
@@ -12,7 +15,7 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap,userData)
 		distance += ($scope.coor[0] - position.coords.latitude)*($scope.coor[0] - position.coords.latitude);
 		distance += ($scope.coor[1] - position.coords.longitude)*($scope.coor[1] - position.coords.longitude)
 		distance = Math.sqrt(distance)*82.5;
-		if (distance >= 2) {
+		if (distance >= 0.05) {
 			console.log("TOO FAR AWAY")
 		}
 		else {
@@ -56,7 +59,6 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap,userData)
 		$scope.dbuilding = first + data['dbuilding'] + last;
 		$scope.ebuilding = first + data['ebuilding'] + last;
 		$scope.fbiulding = first + data['fbiulding'] + last;
-		$scope.me = first + "peace" + last;
 
     $timeout(function() {
     //  	$scope.data = data;
@@ -67,7 +69,18 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,NgMap,userData)
 	$scope.conquer = function(place,coords) {
 		$scope.place = place;
 		$scope.coor  = coords;
-		navigator.geolocation.getCurrentPosition(showPosition);
+		navigator.geolocation.getCurrentPosition(showPosition,function(){console.log("error")},{enableHighAccuracy: true});
+	}
+
+	function onSuccess(position) {
+		$scope.location = "["+position.coords.latitude+","+position.coords.longitude+"]";
+		console.log("new position: " + $scope.location)
+	}
+
+	function onDeviceReady() {
+  		$interval(function() {
+   			navigator.geolocation.getCurrentPosition(onSuccess);
+  		}, 10000)
 	}
 
 });

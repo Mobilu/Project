@@ -42,22 +42,15 @@
    					<i class="fa fa-circle-o fa-4x" aria-hidden="true"></i>
    				</div>
    			</custom-marker>
-
-        <custom-marker position="current">
-        <!--<custom-marker position="[59.347956, 18.07283]">-->
-          <div ng-bind-html="me" id="me">
-            <i class="fa fa-user-o fa-4x" aria-hidden="true"></i>
+        
+        <custom-marker position="{{location}}">
+        <div>
+            <p class="fa fa-hand-peace-o fa-3x" aria-hidden="true"></p>
           </div>
         </custom-marker>
+        
   		</ng-map>
 	</div>
-
-    <!--
-    <p>Team paper:<i class="fa fa-hand-paper-o"  aria-hidden="true"></i></p>
-    <p>Team rock:<i class="fa fa-hand-rock-o"  aria-hidden="true"></i></p>
-    <p>Team scissors:<i class="fa fa-hand-scissors-o"  aria-hidden="true"></i></p>
-    <p>Your location:<i class="fa fa-hand-peace-o" aria-hidden="true"></i></p>
-    -->
   
     <ons-list>
       <ons-list-header id="myList">Symbol explanation:</ons-list-header>
