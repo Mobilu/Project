@@ -8,7 +8,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://mobilu.github.io/Lab1/",
+  "start_url": "https://mobilu.github.io/Project/",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#FFA500"
