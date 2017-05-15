@@ -11,24 +11,6 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,$interval,NgMap
 	$scope.place= "";
 	var myTeam = userData.getTeam();
 	var multiplier = 1;
-	
-	function showPosition(position) {
-		//console.log(position.coords);
-		var distance = 0;
-		distance += ($scope.coor[0] - position.coords.latitude)*($scope.coor[0] - position.coords.latitude);
-		distance += ($scope.coor[1] - position.coords.longitude)*($scope.coor[1] - position.coords.longitude)
-		distance = Math.sqrt(distance)*82.5;
-		if (distance >= 0.05) {
-			console.log("TOO FAR AWAY")
-		}
-		else {
-			if ($scope.place != "") {
-				Firebase.conquer($scope.place,myTeam);
-				userData.addPlace($scope.place);
-				Firebase.setMyPlaces(userData.getPlacesArray());
-			}
-		}
-	}
 
 	$scope.library = "";
 	$scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLTqYGgmbIGdjSQxeRb9JjVQ5Tq4FANdc";
@@ -70,9 +52,26 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,$interval,NgMap
 	});
 
 	$scope.conquer = function(place,coords) {
-		$scope.place = place;
-		$scope.coor  = coords;
-		navigator.geolocation.getCurrentPosition(showPosition);
+
+		var distance = 0;
+		distance += (coords[0] - $scope.location[0])*(coords[0] - $scope.location[0]);
+		distance += (coords[1] - $scope.location[1])*(coords[1] - $scope.location[1]);
+		distance = Math.sqrt(distance)*82.5;
+
+		if (distance >= 0.05) {
+			console.log("TOO FAR AWAY")
+		}
+		else {
+			if ($scope.place != "") {
+				Firebase.conquer(place,myTeam);
+				userData.addPlace(place);
+				Firebase.setMyPlaces(userData.getPlacesArray());
+			}
+		}
+	}
+
+
+
 	}
 
 	function onSuccess(position) {
