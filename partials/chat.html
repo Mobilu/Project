@@ -9,12 +9,17 @@
 		<p style="text-align: center; opacity: 0.6; padding-top: 10px;">CHAT WITH TEAM {{team | uppercase}}</p>
 
 		<div ng-hide="!loggedIN">
-			<div class="container" id="block">
-				<div id="printHere"></div>
+
+			<div class="container" id="block" ng-model="textbox">
+				<div ng-repeat="element in messageList">
+					<span ng-bind="element.mess"></span>
+				</div>
+				<div>{{messageList}}</div>
 			</div>
 			<div>
-				<input type="text" id="input" value="Hello" onclick="clearText()"></input>
-				<ons-button style="border-radius:10px;"><ons-icon icon="send-o"></ons-icon></ons-button>
+				<input type="text" ng-model="chatuser" value="Anon">Username: </input>
+				<input type="text" id="input" ng-model="msginput" value="Hej"></input>
+				<ons-button ng-click="sendmsg()" style="border-radius:10px;"><ons-icon icon="send-o"></ons-icon></ons-button>
 			</div>
 		</div>
 
@@ -24,5 +29,4 @@
 	</div>
 </ons-page>
 
-                        
-
+                  
