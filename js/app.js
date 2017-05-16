@@ -9,8 +9,7 @@ mobiluApp.config(['$routeProvider',
 		    controller: 'StartCtrl'
       }).
       when('/play', {
-        templateUrl: 'partials/play.html',
-        controller: 'PlayCtrl'
+        templateUrl: 'partials/play.html'
       }).
       otherwise({
         redirectTo: '/start'

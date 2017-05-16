@@ -15,6 +15,7 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,$interval,NgMap
 	$scope.library = "";
 	$scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLTqYGgmbIGdjSQxeRb9JjVQ5Tq4FANdc";
 
+	var mapp;
 	NgMap.getMap().then(function(map) {
 		map.setOptions({disableDefaultUI: true,draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true})
     	map.setOptions([
@@ -27,10 +28,10 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,$interval,NgMap
             stylers: [{visibility: 'off'}]
           }
         ]);
-         var center = map.getCenter();
+        var center = map.getCenter();
  		google.maps.event.trigger(map, "resize");
  		map.setCenter(center);
-
+ 		mapp = map;
   	});
 
 	Firebase.getLocData(function(data) {
@@ -60,6 +61,10 @@ mobiluApp.controller('MapCtrl',function($scope,Firebase,$timeout,$interval,NgMap
 		distance = getDistanceFromLatLonInKm(coords[0],coords[1],$scope.location[0],$scope.location[1]);
 		if (distance >= 0.03) {
 			console.log("TOO FAR AWAY")
+    		ons.notification.alert({
+     			message: place + ' is too far ('+Math.round(distance*1000)+' m) away!'
+  			})
+
 		}
 		else {
 			if (place != "") {
