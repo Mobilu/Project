@@ -107,8 +107,11 @@ mobiluApp.factory('Firebase',function ($resource) {
       if(user) {
         cb(true);
         var userId = user.uid;
+        if (String(data[1]) == String(NaN)) {
+          data[1] = 0;
+        }
         var JSONDATA = JSON.parse('{"team" :"'+ data[0] +'","haveBeen" : "['+data[2]+']","totalDistance" : '+ data[1] +'}'); // TODO
-        console.log(JSONDATA);
+        //console.log(JSONDATA);
         firebase.database().ref('users/' + userId).set(JSONDATA);
         loggedInBool = true;
 
