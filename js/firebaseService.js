@@ -107,9 +107,9 @@ mobiluApp.factory('Firebase',function ($resource) {
       if(user) {
         cb(true);
         var userId = user.uid;
-        var JSONDATA = '{"team" :"'+ data[0] +'","haveBeen" : "['+data[2]+']","totalDistance" : '+ data[1] +'}'; // TODO
-        //console.log(JSONDATA);
-        firebase.database().ref('users/' + userId).set(JSON.parse(JSONDATA));
+        var JSONDATA = JSON.parse('{"team" :"'+ data[0] +'","haveBeen" : "['+data[2]+']","totalDistance" : '+ data[1] +'}'); // TODO
+        console.log(JSONDATA);
+        firebase.database().ref('users/' + userId).set(JSONDATA);
         loggedInBool = true;
 
         var reference = firebase.database().ref('teams/'+data[0]);
