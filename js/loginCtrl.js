@@ -6,7 +6,7 @@ mobiluApp.controller('LoginCtrl',function($scope,userData,Firebase,$rootScope){
     $scope.creating = false;
 
     $scope.login = function() {
-        if ($scope.user.email.length > 3 && $scope.user.password.length > 6) {
+        if ($scope.user.email.length > 3) {
             Firebase.login($scope.user.email,$scope.user.password,function(value){
                 if (value == true) {
                     $scope.loggedIn = true;
@@ -30,6 +30,11 @@ mobiluApp.controller('LoginCtrl',function($scope,userData,Firebase,$rootScope){
             })
 
         }
+        else {
+            ons.notification.alert({
+                message: 'Please fill in a valid email and password.'
+            })
+        }
     }
 
     $scope.signup = function() {
@@ -45,6 +50,11 @@ mobiluApp.controller('LoginCtrl',function($scope,userData,Firebase,$rootScope){
             });         
             $scope.user = {email:"", password:"",confirm:""};
             Firebase.setMyPlaces(userData.getPlacesArray())
+        }
+        else if ($scope.user.password.length < 7) {
+            ons.notification.alert({
+                message: 'Password has to be more than 6 characters.'
+            })
         }
         else {
             ons.notification.alert({
