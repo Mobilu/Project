@@ -7,41 +7,6 @@ mobiluApp.controller('ChatCtrl',function($scope,userData,Firebase,$timeout,$root
     $scope.messageList = [];
     $scope.msginput = "";
 
-    //$scope.f = firebase.database().ref("chatrooms/rockchat");
-    //$scope.f.on('value', function(snapshot) {
-    //   messageList.push(snapshot.val());
-    //});
-
-    /*$scope.sendmsg = function(){
-    	var db = firebase.database();
-    	var chatRoom;
-    	if ($scope.team == "paper") {
-    		var chatRoom = "chatrooms/paperchat";
-    	}
-    	else if ($scope.team == "rock") {
-    		var chatRoom = "chatrooms/rockchat";
-    	}
-    	else {
-    		var chatRoom = "chatrooms/scissorchat";
-    	};
-		var msgMondiale = db.ref(chatRoom);
-		var name = $scope.chatuser;
-   		var msg =  $scope.msginput;
-   		msgMondiale.push([name,msg]);
-   		//$scope.updateText(msgMondiale.val());
-        //$scope.messageList = firebase.database().ref(chatRoom).value().val();
-        $scope.updateText();
-
-    };
-
-    $scope.updateText = function(){
-    	var element = {
-    	    mess: $scope.msginput
-        }
-
-        $scope.messageList.push(element);
-    */
-
     $scope.sendmsg = function(){
         Firebase.sendMessage($scope.team,$scope.msginput,$scope.chatuser)
     };
@@ -49,7 +14,7 @@ mobiluApp.controller('ChatCtrl',function($scope,userData,Firebase,$timeout,$root
     $scope.messageReader = function(){
         Firebase.messageReader($scope.team,function(data){
             $scope.messageList = data;
-            console.log(data);
+            //console.log(data);
         })
     }
 

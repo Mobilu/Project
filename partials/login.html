@@ -6,7 +6,8 @@
 
 <ons-page>
 	<div ng-controller="LoginCtrl" style="text-align: center; margin-top: 30px;">
-		<div ng-hide="loggedIn" </div>
+		<div ng-hide="loggedIn">
+      <div ng-hide="creating">
 			<p>Log in to save your data and keep playing later :)</p>
     		<div>
       			<ons-input id="username" modifier="underbar" placeholder="Email" float ng-model="user.email"></ons-input>
@@ -14,16 +15,39 @@
     		<div>
       			<ons-input id="password" modifier="underbar" type="password" placeholder="Password" ng-model="user.password" float></ons-input>
     		</div>
-    		<div style="margin-top: 30px;">
-      			<ons-button ng-click="signup()">Sign up</ons-button>
+    		<div style="margin-top: 20px;">
       			<ons-button ng-click="login()">Log in</ons-button>
     		</div>
-    		<img src="http://placekitten.com/g/300/200"></img>
+    		<img src="http://placekitten.com/g/300/150"></img>
+        <div ng-hide="creating">
+          <div style="margin-top: 20px;">
+            <ons-button ng-click="newacc()">Create New Account</ons-button>
+          </div>
+        </div>
   		</div>
-  		<div ng-hide="!loggedIn">
+      </div>
+<div ng-hide="!creating">
+<p>Sign up so you can save your data :)</p>
+        <div>
+            <ons-input id="username" modifier="underbar" placeholder="Email" float ng-model="user.email"></ons-input>
+        </div>
+        <div>
+            <ons-input id="password" modifier="underbar" type="password" placeholder="Password" ng-model="user.password" float></ons-input>
+        </div>
+        <div>
+            <ons-input id="confirm" modifier="underbar" type="password" placeholder="Confirm Password" ng-model="user.confirm" float></ons-input>
+        </div>
+
+        <div style="margin-top: 20px;">
+          <ons-button ng-click="signup()">Sign Up</ons-button>
+          <ons-button ng-click="cancel()">Cancel</ons-button>
+        </div>
+        <img src="http://placekitten.com/g/300/200"></img>
+</div>
+  	<div ng-hide="!loggedIn">
 			<p>Welcome! You are now logged in :)</p>
-			<img src="http://placekitten.com/g/300/350"></img>
-			<ons-button ng-click="logout()">Log out</ons-button>
+			<img src="http://placekitten.com/g/250/300"></img>
+			<ons-button ng-click="logout()" style="margin-top: 10px;">Log out</ons-button>
 		</div>
   	</div>
 

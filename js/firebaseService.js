@@ -116,7 +116,7 @@ mobiluApp.factory('Firebase',function ($resource) {
         reference.once('value', function(snapshot) {
         var teamData = JSON.parse(JSON.stringify(snapshot));
         //teamData.push(user.uid);
-        console.log(teamData)
+        //console.log(teamData)
         teamData += 1;
         firebase.database().ref('teams/'+data[0]).set(teamData);
         });
@@ -189,7 +189,7 @@ mobiluApp.factory('Firebase',function ($resource) {
       var reference = firebase.database().ref('users/' + userId);
       reference.on('value', function(snapshot) {
         var data = JSON.parse(JSON.stringify(snapshot));
-        console.log(data);
+        //console.log(data);
         if (data == null) {
           cb(0);
         }
@@ -217,7 +217,7 @@ mobiluApp.factory('Firebase',function ($resource) {
   }
 
   this.messageReader = function(team,cb) {
-    console.log("Here1")
+    
     if (team == "paper") {
       var chatRoom = "chatrooms/paperchat";
     }
@@ -230,7 +230,7 @@ mobiluApp.factory('Firebase',function ($resource) {
 
     var reference = firebase.database().ref(chatRoom);
     reference.on('value', function(snapshot) {
-      console.log("HERE2")
+      
       cb(JSON.parse(JSON.stringify(snapshot)));  
     });
   }
